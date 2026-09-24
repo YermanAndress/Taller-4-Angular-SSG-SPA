@@ -1,0 +1,47 @@
+---
+import Badge from "@components/shared/Badge.astro";
+import { SALES } from "@data/Sales";
+import type { BadgeType } from "@interfaces/Badge";
+import type { Sale, SaleStatus } from "@interfaces/Sales";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const sales: Sale[] = SALES;
+
+const statusMap: Record<SaleStatus, BadgeType> = {
+  'Completada' : 'success',
+  'Pendiente': 'warning',
+  'Cancelada': 'danger',
+}
+
+---
+<MainLayout>
+  <table class="table table-striped border">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Total</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {sales.map((sale) => (
+        <tr>
+          <th scope="row">{sale.id}</th>
+          <td>{sale.customer}</td>
+          <td>{sale.product}</td>
+          <td>{sale.date}</td>
+          <td>{sale.total}</td>
+          <td>
+            <Badge
+              text={sale.status}
+              type={statusMap[sale.status]}
+            />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</MainLayout>
