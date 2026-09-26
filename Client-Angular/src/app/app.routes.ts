@@ -3,6 +3,7 @@ import { DatePage } from './pages/date/date.page';
 import { ProductsPage } from './pages/products/products.page';
 import { UsersPage } from './pages/users/users.page';
 import { SalesPage } from './pages/sales/sales.page';
+import { InventoryPage } from './pages/inventory/inventory.page';
 
 /**
  * Definición de las rutas principales de la aplicación.
@@ -56,6 +57,15 @@ export const routes: Routes = [
    * de mostrar y gestionar el listado de ventas.
    */
   { path: 'sales', component: SalesPage },
+
+  /**
+   * Ruta de inventario.
+   *
+   * @remarks
+   * Renderiza el componente `InventoryPage`, encargado
+   * de mostrar y gestionar el listado del inventario.
+   */
+  { path: 'inventory', component: InventoryPage },
 
   /**
    * Ruta comodín.
