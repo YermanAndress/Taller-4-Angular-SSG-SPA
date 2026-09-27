@@ -2,6 +2,9 @@ import { Routes } from '@angular/router';
 import { DatePage } from './pages/date/date.page';
 import { ProductsPage } from './pages/products/products.page';
 import { UsersPage } from './pages/users/users.page';
+import { SalesPage } from './pages/sales/sales.page';
+import { InventoryPage } from './pages/inventory/inventory.page';
+import { EmployeesPage } from './pages/employees/employees.page';
 
 /**
  * Definición de las rutas principales de la aplicación.
@@ -46,6 +49,33 @@ export const routes: Routes = [
    * de mostrar la fecha actual del sistema.
    */
   { path: 'date', component: DatePage },
+
+  /**
+   * Ruta de ventas.
+   *
+   * @remarks
+   * Renderiza el componente `SalesPage`, encargado
+   * de mostrar y gestionar el listado de ventas.
+   */
+  { path: 'sales', component: SalesPage },
+
+  /**
+   * Ruta de inventario.
+   *
+   * @remarks
+   * Renderiza el componente `InventoryPage`, encargado
+   * de mostrar y gestionar el listado del inventario.
+   */
+  { path: 'inventory', component: InventoryPage },
+
+  /**
+   * Ruta de empleados.
+   *
+   * @remarks
+   * Renderiza el componente `EmployeesPage`, encargado
+   * de mostrar y gestionar el listado de empleados.
+   */
+  { path: 'employees', component: EmployeesPage },
 
   /**
    * Ruta comodín.

@@ -1,0 +1,47 @@
+---
+import Badge from "@components/shared/Badge.astro";
+import { INVENTORY } from "@data/Inventory";
+import type { BadgeType } from "@interfaces/Badge";
+import type { Inventory, InventoryStatus } from "@interfaces/Inventory";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const inventory: Inventory[] = INVENTORY;
+
+const statusMap: Record<InventoryStatus, BadgeType> = {
+  'Disponible' : 'success',
+  'Stock bajo': 'warning',
+  'Agotado': 'danger',
+}
+
+---
+<MainLayout>
+  <table class="table table-striped border">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Stock mínimo</th>
+        <th scope="col">Bodega</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {inventory.map((item) => (
+        <tr>
+          <th scope="row">{item.id}</th>
+          <td>{item.product}</td>
+          <td>{item.quantity}</td>
+          <td>{item.minStock}</td>
+          <td>{item.warehouse}</td>
+          <td>
+            <Badge
+              text={item.status}
+              type={statusMap[item.status]}
+            />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</MainLayout>
