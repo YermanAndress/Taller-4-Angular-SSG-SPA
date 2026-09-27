@@ -1,0 +1,47 @@
+---
+import Badge from "@components/shared/Badge.astro";
+import { EMPLOYEES } from "@data/Employees";
+import type { BadgeType } from "@interfaces/Badge";
+import type { Employee, EmployeeStatus } from "@interfaces/Employees";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const employees: Employee[] = EMPLOYEES;
+
+const statusMap: Record<EmployeeStatus, BadgeType> = {
+  'Activo' : 'success',
+  'Vacaciones': 'warning',
+  'Inactivo': 'danger',
+}
+
+---
+<MainLayout>
+  <table class="table table-striped border">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cargo</th>
+        <th scope="col">Departamento</th>
+        <th scope="col">Salario</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {employees.map((item) => (
+        <tr>
+          <th scope="row">{item.id}</th>
+          <td>{item.name}</td>
+          <td>{item.position}</td>
+          <td>{item.department}</td>
+          <td>{item.salary}</td>
+          <td>
+            <Badge
+              text={item.status}
+              type={statusMap[item.status]}
+            />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</MainLayout>
